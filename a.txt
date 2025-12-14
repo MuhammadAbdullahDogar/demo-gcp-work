@@ -1,0 +1,20 @@
+| Capability                   | BigQuery Support | Description                                                                                         | Example                     |
+| ---------------------------- | ---------------- | --------------------------------------------------------------------------------------------------- | --------------------------- |
+| Native JSON data type        | Yes              | BigQuery provides a native `JSON` column type, which is functionally equivalent to PostgreSQL JSONB | profile JSON                |
+| Read JSON fields             | Yes              | JSON fields can be accessed using dot notation or JSON functions                                    | profile.name                |
+| Write JSON data              | Yes              | JSON literals can be inserted directly into JSON columns                                            | JSON {"a":1}                |
+| Store nested objects         | Yes              | Nested JSON objects are fully supported                                                             | { "a": { "b": 1 } }         |
+| Store arrays                 | Yes              | JSON arrays can be stored and queried                                                               | ["x", "y"]                  |
+| Schema-less ingestion        | Yes              | JSON data can be ingested without defining a fixed schema                                           | Load raw JSON               |
+| Convert JSON to STRUCT       | Yes              | JSON values can be extracted into typed STRUCT columns                                              | JSON_VALUE()                |
+| Convert STRUCT to JSON       | Yes              | Structured data can be converted back to JSON                                                       | TO_JSON()                   |
+| Indexing JSON                | No               | Traditional indexing is not available for JSON fields                                               | Columnar scan only          |
+| Query performance            | Medium           | JSON queries are slower compared to STRUCT-based schemas                                            | Prefer STRUCT for analytics |
+| JSON validation              | Yes              | BigQuery validates JSON during insert and load operations                                           | Invalid JSON rejected       |
+| Update JSON fields           | Limited          | JSON updates require rewriting the full row                                                         | JSON_SET()                  |
+| Partial field updates        | No               | Row-level partial updates are not natively supported                                                | Full row rewrite            |
+| Field-level access control   | No               | Access control is available only at the column level                                                | Not supported               |
+| Streaming JSON data          | Yes              | JSON data can be ingested via streaming inserts                                                     | Streaming API               |
+| Load JSON files              | Yes              | Supports loading NDJSON and JSON files from Cloud Storage                                           | GCS to BigQuery             |
+| JSONPath support             | Partial          | JSONPath-like expressions are supported via JSON functions                                          | JSON_VALUE()                |
+| PostgreSQL JSONB equivalence | Yes              | BigQuery JSON provides equivalent functionality (without indexes)                                   | Functional match            |
