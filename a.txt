@@ -5,10 +5,16 @@ Use filters, aggregates, and joins
 
 3) Instead of manually selecting columns to optimize, AlloyDB can analyze query patterns and automatically populate the column store with columns that yield the biggest benefit. This reduces DBA/engineering effort and ensures the structure adapts over time to the workload.
 
-4) 
+4) If you’re querying large fact tables with aggregations like SUM, AVG, COUNT or slicing by filters (e.g., dates, categories), the columnar engine dramatically reduces query time and resource usage
 
+5) Queries that join large tables but only touch a few columns will see much less I/O and faster join processing via vectorized execution
 
+Architecture Considerations:
 
+1) Memory settings: Tuning the column store memory vs. database working set is critical for performance.
+2) Read Pools: Allocate more columnar memory to read pools for heavy analytical workloads alongside transactional traffic.
+3) EXPLAIN Planning: Always validate with EXPLAIN to ensure the engine is being used for critical queries.
+4) Disaggregated model: Compute and storage are separate — you can scale CPU and memory independently from storage
 
 
 Limitations & When NOT to Use It
@@ -23,3 +29,4 @@ Limitations & When NOT to Use It
 
 5) Indexed queries on row data may bypass the columnar engine.
 
+POC may be required. 
