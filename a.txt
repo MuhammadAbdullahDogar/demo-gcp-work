@@ -1,3 +1,9 @@
+test
+
+
+
+
+
 | Capability                   | BigQuery Support | Description                                                                                         | Example                     |
 | ---------------------------- | ---------------- | --------------------------------------------------------------------------------------------------- | --------------------------- |
 | Native JSON data type        | Yes              | BigQuery provides a native `JSON` column type, which is functionally equivalent to PostgreSQL JSONB | profile JSON                |
